@@ -6,6 +6,7 @@ import (
 	"github.com/gravitl/netmaker/logger"
 	"github.com/gravitl/netmaker/logic"
 	"github.com/gravitl/netmaker/models"
+	"github.com/gravitl/netmaker/database"
 )
 // GetNetworkACLs – lista usuários autorizados numa rede
 func GetNetworkACLs(w http.ResponseWriter, r *http.Request) {
@@ -29,4 +30,5 @@ func PutNetworkACL(w http.ResponseWriter, r *http.Request) {
 		database.DB.Where("user_name = ? AND net_id = ?", payload.UserName, netID).Delete(&models.UserNetworkACL{})
 	}
 	logic.ReturnSuccessResponse(w, r, nil)
+
 }
